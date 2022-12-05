@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 # reading CSV file
 '''Removing header and giving column names
 Converting Nan values to empty string values'''
-df = pd.read_csv("data\medical_transcriptions\mtsamples.csv", header=None, names=["serial no","description", "medical_specialty", "Diagnosis", "transcription", "keywords"])
+df = pd.read_csv("mtsamples.csv", header=None, names=["serial no","description", "medical_specialty", "Diagnosis", "transcription", "keywords"])
 df.fillna('', inplace=True)
 
 # analysing the dimensions of the data
@@ -120,11 +120,11 @@ my_list_key = list(dict.fromkeys(my_list_key))
 print("Total number of keywords in surgery is: " + str(len(my_list_key)))
 # Answer: Total number of keywords in surgery is: 6266
 
-#Question 7: What is the number of times Monocryl is used to suture?
+#Question 7: What is the number of times different types of anesthesia is used?
 s= 'local'
 t= 'General'
 a1=[s,t]
-b1=[trans_2_final.count(s),trans_2_final.count(t)]
+b1=[trans_2_final.count(s), trans_2_final.count(t)]
 print(f'Local anesthesia is used {trans_2_final.count(s)} times and general anesthesia is used {trans_2_final.count(t)} times')
 #Answer: Local anesthesia is used 155 times and general anesthesia is used 376 times
 
@@ -151,8 +151,8 @@ print('Number of patients undergoing surgeries of inguinal region are ' + str(di
 #PART-3: DATA VISUALIZATION
 
 #Histogram of different medical specialities
-a1 = res_overall_flat
-plt.hist(a1, 10)
+t1 = res_overall_flat
+plt.hist(t1, 40)
 plt.title("Medical specialities")
 plt.xlabel("Speciality")
 plt.ylabel("Frequencies")
@@ -161,8 +161,8 @@ plt.show()
 
 
 #Histogram plot of different diagnosis in surgery
-a2 = di_list
-plt.hist(a2, 10)
+t2 = di_list
+plt.hist(t2, 70)
 plt.title("Diagnosis in surgery")
 plt.xlabel("Diagnosis")
 plt.ylabel("Frequencies")
@@ -171,16 +171,16 @@ plt.show()
 
 
 #Histogram plots of different diagnosis in surgery(Magnified)
-a3 = di_list[1:50]
-plt.hist(a3, 50)
+t3 = di_list[1:50]
+plt.hist(t3, 50)
 plt.title("Diagnosis in surgery(magnified")
 plt.xlabel("Diagnosis")
 plt.ylabel("Frequencies")
 plt.xticks(rotation=90)
 plt.show()
 
-a4= di_list[50:200]
-plt.hist(a4, 50)
+t4= di_list[50:100]
+plt.hist(t4, 50)
 plt.title("Diagnosis in surgery(magnified")
 plt.xlabel("Diagnosis")
 plt.ylabel("Frequencies")
@@ -196,6 +196,7 @@ plt.show()
 
 #Piechart of the different types of diagnostic procedures in surgery
 fig = plt.figure(figsize =(10, 7))
+plt.title('Diagnostic procedures in surgery')
 plt.pie(y, labels = x)
 plt.show()
 
@@ -212,3 +213,4 @@ plt.xlabel("chief complaint")
 plt.ylabel("frequency")  
 plt.title("Chief complaints")
 plt.show()
+
